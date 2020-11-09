@@ -1,0 +1,2 @@
+jigsaw面板一定记得修改Layer为jigsawBoard
+gamemanager记得引用jigboard
