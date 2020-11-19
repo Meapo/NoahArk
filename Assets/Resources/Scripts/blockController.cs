@@ -72,15 +72,7 @@ public class blockController : MonoBehaviour
 
     void Rotate()
     {
-        Transform[] transforms = GetComponentsInChildren<Transform>();
-        Vector3 center = transforms[0].position;
-        for (int i = 1; i < transforms.Length; i++)
-        {
-            Vector3 offset = transforms[i].position - center;
-            float x = center.x - offset.y;
-            float y = center.y + offset.x;
-            transforms[i].position = new Vector3(x, y);
-        }
+        transform.Rotate(new Vector3(0f, 0f, -90f), Space.Self);
     }
 
     // 对四个方向的相邻方块进行射线检测
