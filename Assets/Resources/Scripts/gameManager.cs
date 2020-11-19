@@ -60,8 +60,8 @@ public class gameManager : MonoBehaviour
                 if (hit.collider != null)
                 {
                     GameObject hitObject = hit.collider.gameObject.GetComponentInParent<blockController>().gameObject;
-                    pickupBlock(hit.collider.gameObject.GetComponentInParent<blockController>().gameObject);
-                    pickupItem = hit.collider.gameObject.GetComponentInParent<blockController>().gameObject;
+                    pickupBlock(hitObject);
+                    pickupItem = hitObject;
                     // 如果在拼图面板，则需要恢复原来的点集
                     if (pickupItem.GetComponent<blockController>().isAtJigsawBoard)
                     {
@@ -175,7 +175,7 @@ public class gameManager : MonoBehaviour
     /// </summary>
     /// <param name="pos">点的世界坐标</param>
     /// <param name="boardCenter">面板的中心世界坐标</param>
-    /// <returns>点所在区域相对面板中心的相对坐标</returns>
+    /// <returns>点所在区域的中心点相对面板中心的相对坐标</returns>
     Vector3 InWhichBoardArea(Vector3 pos, Vector3 boardCenter)
     {
         float x = Mathf.Abs(pos.x - boardCenter.x), y = Mathf.Abs(pos.y - boardCenter.y);
