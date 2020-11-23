@@ -20,13 +20,18 @@ public class blockController : MonoBehaviour
     GameObject withdrawBlock;
 
     gameManager gameManagerInstance;
+
+    MouseInf mouse;
+
+    private void Awake()
+    {
+        initBlockPos = transform.position;
+    }
     // Start is called before the first frame update
     void Start()
     {
         gameManagerInstance = gameManager.instance;
-        initBlockPos = transform.position;
         blockLayerMask = 1 << LayerMask.NameToLayer("block");
-        
         if (gameObject.name[gameObject.name.Length - 1] == '_')
         {
             isChanged = true;
@@ -36,11 +41,13 @@ public class blockController : MonoBehaviour
             string path = "Prefabs/AnimalBlock/" + gameObject.name + "_";
             withdrawBlock = (GameObject)Resources.Load(path);
         }
+        mouse = MouseInf.GetInstance();
     }
 
     // Update is called once per frame
     void Update()
     {
+        
         if (isPickedup)
         {
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -50,26 +57,47 @@ public class blockController : MonoBehaviour
                 Rotate();
             }
         }
-
-        if (isAtJigsawBoard)
+        if (mouse.isRelay)
         {
-            Transform[] transforms = GetComponentsInChildren<Transform>();
-            Vector3 center = transforms[0].position;
-            for (int i = 1; i < transforms.Length; i++)
+            if (isAtJigsawBoard)
             {
-                if (NextAreaDetect(transforms[i].position))
+                Transform[] transforms = GetComponentsInChildren<Transform>();
+                Vector3 center = transforms[0].position;
+                for (int i = 1; i < transforms.Length; i++)
                 {
-                    if (!isChanged)
+                    if (NextAreaDetect(transforms[i].position))
                     {
-                        ChangeBlock();
+                        /*if (!isChanged)
+                        {
+                            ChangeBlock();
+                        }
+                        Withdraw();*/
+
+                        #region codeChanged
+                        if (!isChanged)
+                        {
+                            SaveMove(true);
+                            Withdraw();
+                            ChangeBlock();
+                            break;
+                        }
+                        else
+                        {
+                            SaveMove(false);
+                            Withdraw();
+                            break;
+                        }
+                        #endregion
                     }
-                    Withdraw();
                 }
             }
         }
-        
+    
     }
-
+    private void LateUpdate()
+    {
+        mouse.isRelay = false;
+    }
     void Rotate()
     {
         transform.Rotate(new Vector3(0f, 0f, -90f), Space.Self);
@@ -109,7 +137,7 @@ public class blockController : MonoBehaviour
     // 碰到相克的方块后撤退
     void ChangeBlock()
     {
-        GameObject newObject =  Instantiate<GameObject>(withdrawBlock, initBlockPos, Quaternion.identity);
+        GameObject newObject =  Instantiate<GameObject>(withdrawBlock, initBlockPos, Quaternion.identity,transform.parent);
         newObject.name = withdrawBlock.name;
         Destroy(this.gameObject);
     }
@@ -118,5 +146,21 @@ public class blockController : MonoBehaviour
     {
         gameManagerInstance.AddPointToList(gameObject, gameManagerInstance.JigsawBoard);
         transform.position = initBlockPos;
+    }
+
+    /// <summary>
+    /// 将方块撤回的移动信息存入operation中
+    /// </summary>
+    void SaveMove(bool isChanged)
+    {
+        Operation operation = Operation.GetInstance();
+        MoveInf move = new MoveInf();
+        move.blockName = name;
+        move.endBoard = gameManagerInstance.pickupBoard;
+        move.sourBoard = gameManagerInstance.JigsawBoard;
+        move.sourPos = transform.position;
+        move.sourRoa = transform.eulerAngles;
+        move.isChanged = isChanged;
+        operation.AddMoveInf(move);
     }
 }

@@ -13,7 +13,7 @@ public class gameManager : MonoBehaviour
 
     [SerializeField]
     [Tooltip("放置板")]
-    private GameObject pickupBoard;
+    public GameObject pickupBoard;
 
     // 方格大小
     float size;
@@ -26,6 +26,11 @@ public class gameManager : MonoBehaviour
     // layer mask
     LayerMask jigsawBoardMask, pickupBoardMask, blockBoardMask;
 
+    Operation operation;
+
+    MoveInf move;
+
+    MouseInf mouse;
     public static gameManager instance;
     private void Awake()
     {
@@ -44,10 +49,12 @@ public class gameManager : MonoBehaviour
         jigsawBoardMask = 1 << LayerMask.NameToLayer("jigsawBoard");
         pickupBoardMask = 1 << LayerMask.NameToLayer("pickupBoard");
         blockBoardMask = 1 << LayerMask.NameToLayer("block");
+
+        mouse = MouseInf.GetInstance();
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (Input.GetMouseButtonDown(0))
         {
@@ -62,11 +69,25 @@ public class gameManager : MonoBehaviour
                     GameObject hitObject = hit.collider.gameObject.GetComponentInParent<blockController>().gameObject;
                     pickupBlock(hitObject);
                     pickupItem = hitObject;
+
+                    Operation.CreateNewInstance();
+                    operation = Operation.GetInstance();
+                    move = new MoveInf();
+                    move.blockName = pickupItem.name;
+                    move.sourPos = pickupItem.transform.position;
+                    move.sourRoa = pickupItem.transform.eulerAngles;
+                    move.isChanged = false;
+                    Undo.instance.AddOperation(operation);
                     // 如果在拼图面板，则需要恢复原来的点集
                     if (pickupItem.GetComponent<blockController>().isAtJigsawBoard)
                     {
                         AddPointToList(pickupItem, JigsawBoard);
                         pickupItem.GetComponent<blockController>().isAtJigsawBoard = false;
+                        move.sourBoard = JigsawBoard;
+                    }
+                    else 
+                    {
+                        move.sourBoard = JigsawBoard;
                     }
                 }
             }
@@ -85,7 +106,10 @@ public class gameManager : MonoBehaviour
                         {
                             DeletePointFromList(pickupItem, hitObject);
                             pickupItem.GetComponent<blockController>().isAtJigsawBoard = true;
+                            mouse.isRelay = true;
                         }
+                        move.endBoard = hitObject;
+                        operation.AddMoveInf(move);
                         pickupItem = null;
                     }
                 }
@@ -148,7 +172,7 @@ public class gameManager : MonoBehaviour
         }
     }
 
-    void DeletePointFromList(GameObject dropItem, GameObject dropBoard)
+    public void DeletePointFromList(GameObject dropItem, GameObject dropBoard)
     {
         List<Vector2> rpLst = dropBoard.GetComponent<relativePosList>().relativePosLst;
         Transform[] transforms = dropItem.GetComponentsInChildren<Transform>();
