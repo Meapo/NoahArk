@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class SettingUI : MonoBehaviour
 {
-    GameObject setting;
-    private void OnMouseUp()
+    public GameObject setting;
+    public void Setting()
     {
         setting.SetActive(true);
-
     }
 }
