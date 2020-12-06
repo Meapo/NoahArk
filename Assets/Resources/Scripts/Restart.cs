@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class Restart : MonoBehaviour
 {
-    private void OnMouseUp()
+    public void ClickToRestart()
     {
         int sceneLayer = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadSceneAsync(sceneLayer);

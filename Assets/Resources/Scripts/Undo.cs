@@ -24,7 +24,7 @@ public class Undo : MonoBehaviour
         operations.Push(operation);
     }
     private Undo() { }
-    private void OnMouseUp()
+    public void ClickToUndo()
     {
         if(operations.Count>0)
         {

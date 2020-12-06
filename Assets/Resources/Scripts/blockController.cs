@@ -19,6 +19,8 @@ public class blockController : MonoBehaviour
 
     GameObject withdrawBlock;
 
+    GameObject initialBlock;
+
     gameManager gameManagerInstance;
 
     MouseInf mouse;
