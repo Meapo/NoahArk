@@ -21,7 +21,7 @@ public class relativePosList : MonoBehaviour
     {
         relativePosLst = new List<Vector2>();
         Transform[] transforms = GetComponentsInChildren<Transform>();
-        for (int i = 1; i < transforms.Length; i++)
+        for (int i = 2; i < transforms.Length; i++)
         {
             relativePosLst.Add(transforms[i].position - transform.position);
         }

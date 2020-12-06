@@ -31,6 +31,8 @@ public class gameManager : MonoBehaviour
     MoveInf move;
 
     MouseInf mouse;
+
+    bool isMouseLeftDown = false;
     public static gameManager instance;
     private void Awake()
     {
@@ -54,9 +56,18 @@ public class gameManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+
+
+    private void Update()
     {
         if (Input.GetMouseButtonDown(0))
+        {
+            isMouseLeftDown = true;
+        }
+    }
+    void FixedUpdate()
+    {
+        if (isMouseLeftDown)
         {
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
@@ -120,7 +131,7 @@ public class gameManager : MonoBehaviour
                 //    pickupItem = null;
                 //}
             }
-            
+            isMouseLeftDown = false;
         }
     }
 

@@ -54,7 +54,7 @@ public class blockController : MonoBehaviour
             if (isAtJigsawBoard)
             {
                 Transform[] transforms = GetComponentsInChildren<Transform>();
-                Vector3 center = transforms[0].position;
+                //Vector3 center = transforms[0].position;
                 for (int i = 1; i < transforms.Length; i++)
                 {
                     if (NextAreaDetect(transforms[i].position))
@@ -136,6 +136,7 @@ public class blockController : MonoBehaviour
             order = match[0].ToString();
         }
         newObject.name = changeBlock.name+order;
+        gameManagerInstance.AddPointToList(gameObject, gameManagerInstance.JigsawBoard);
         Destroy(this.gameObject);
         Debug.Log("cahnge");
         SaveMove(true,newObject.name);
