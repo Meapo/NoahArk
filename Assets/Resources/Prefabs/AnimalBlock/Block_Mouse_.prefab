@@ -127,10 +127,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPickedup: 0
-  isAtJigsawBoard: 0
-  isChanged: 0
+  isAtJigsawBoard: 1
+  isChanged: 1
   initBlockPos: {x: 0, y: 0, z: 0}
   type: 1
+  changeBlock: {fileID: 3478816244244690856, guid: 5a90832ecba4dc845aefba6f7d84d7be,
+    type: 3}
 --- !u!1001 &2834665603009375030
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Text.RegularExpressions;
 
 public class Undo : MonoBehaviour
 { 
@@ -42,13 +43,20 @@ public class Undo : MonoBehaviour
         GameObject block;
         if(move.isChanged)
         {
-            GameObject preBlock = relayBoard.transform.Find(move.blockName+'_').gameObject;
+            GameObject preBlock = relayBoard.transform.Find(move.blockName).gameObject;
             Vector3 iniPos = preBlock.GetComponent<blockController>().initBlockPos;
-            GameObject blockPrefabs = (GameObject)Resources.Load("Prefabs/AnimalBlock/" + move.blockName);
+            GameObject blockPrefabs = preBlock.GetComponent<blockController>().changeBlock;
             block = GameObject.Instantiate(blockPrefabs, iniPos, Quaternion.identity, preBlock.transform.parent);
             GameObject.Destroy(preBlock);
             block.GetComponent<blockController>().isChanged = false;
-            block.name = move.blockName;
+            string partten = @"\s.*";
+            MatchCollection match = Regex.Matches(name, partten);
+            string order = null;
+            if (match.Count > 0)
+            {
+                order = match[0].ToString();
+            }
+            block.name = blockPrefabs.name+order;
         }
         else
         {

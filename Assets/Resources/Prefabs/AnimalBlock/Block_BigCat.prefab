@@ -61,6 +61,8 @@ MonoBehaviour:
   isChanged: 0
   initBlockPos: {x: 0, y: 0, z: 0}
   type: 2
+  changeBlock: {fileID: 3227654339248721255, guid: b03cb2c5db394514799c7596b02adc84,
+    type: 3}
 --- !u!1 &5886165283115983132
 GameObject:
   m_ObjectHideFlags: 0

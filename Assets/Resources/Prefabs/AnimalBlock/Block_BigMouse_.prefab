@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 5323392160227287886}
   - component: {fileID: 4412890014690115688}
   m_Layer: 9
-  m_Name: 'Block_Mouse2x2_ '
+  m_Name: Block_BigMouse_
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -131,9 +131,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPickedup: 0
   isAtJigsawBoard: 0
-  isChanged: 0
+  isChanged: 1
   initBlockPos: {x: 0, y: 0, z: 0}
   type: 1
+  changeBlock: {fileID: 3478816244244690856, guid: 9faa545b311871f49bf9b48400642ff8,
+    type: 3}
 --- !u!1001 &1287315761201224170
 PrefabInstance:
   m_ObjectHideFlags: 0

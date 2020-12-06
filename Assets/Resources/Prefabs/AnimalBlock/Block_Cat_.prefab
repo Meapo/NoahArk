@@ -48,9 +48,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPickedup: 0
   isAtJigsawBoard: 0
-  isChanged: 0
+  isChanged: 1
   initBlockPos: {x: 0, y: 0, z: 0}
   type: 2
+  changeBlock: {fileID: 0}
 --- !u!1 &5857536422252154253
 GameObject:
   m_ObjectHideFlags: 0

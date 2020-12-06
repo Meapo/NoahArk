@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System.Text.RegularExpressions;
 public class blockController : MonoBehaviour
 {
     public bool isPickedup;
@@ -17,13 +17,12 @@ public class blockController : MonoBehaviour
 
     LayerMask blockLayerMask;
 
-    GameObject withdrawBlock;
-
-    GameObject initialBlock;
+    public GameObject changeBlock;
 
     gameManager gameManagerInstance;
 
     MouseInf mouse;
+
 
     private void Awake()
     {
@@ -34,15 +33,6 @@ public class blockController : MonoBehaviour
     {
         gameManagerInstance = gameManager.instance;
         blockLayerMask = 1 << LayerMask.NameToLayer("block");
-        if (gameObject.name[gameObject.name.Length - 1] == '_')
-        {
-            isChanged = true;
-        }
-        else
-        {
-            string path = "Prefabs/AnimalBlock/" + gameObject.name + "_";
-            withdrawBlock = (GameObject)Resources.Load(path);
-        }
         mouse = MouseInf.GetInstance();
     }
 
@@ -78,14 +68,12 @@ public class blockController : MonoBehaviour
                         #region codeChanged
                         if (!isChanged)
                         {
-                            SaveMove(true);
-                            Withdraw();
                             ChangeBlock();
                             break;
                         }
                         else
                         {
-                            SaveMove(false);
+                            SaveMove(false,name);
                             Withdraw();
                             break;
                         }
@@ -139,9 +127,18 @@ public class blockController : MonoBehaviour
     // 碰到相克的方块后撤退
     void ChangeBlock()
     {
-        GameObject newObject =  Instantiate<GameObject>(withdrawBlock, initBlockPos, Quaternion.identity,transform.parent);
-        newObject.name = withdrawBlock.name;
+        GameObject newObject =  Instantiate<GameObject>(changeBlock, initBlockPos, Quaternion.identity,transform.parent);
+        string partten = @"\s.*";
+        MatchCollection match = Regex.Matches(name,partten);
+        string order=null;
+        if (match.Count>0)
+        {
+            order = match[0].ToString();
+        }
+        newObject.name = changeBlock.name+order;
         Destroy(this.gameObject);
+        Debug.Log("cahnge");
+        SaveMove(true,newObject.name);
     }
 
     void Withdraw()
@@ -153,7 +150,7 @@ public class blockController : MonoBehaviour
     /// <summary>
     /// 将方块撤回的移动信息存入operation中
     /// </summary>
-    void SaveMove(bool isChanged)
+    void SaveMove(bool isChanged,string name)
     {
         Operation operation = Operation.GetInstance();
         MoveInf move = new MoveInf();

@@ -138,6 +138,8 @@ MonoBehaviour:
   isChanged: 0
   initBlockPos: {x: 0, y: 0, z: 0}
   type: 1
+  changeBlock: {fileID: 6327668650944180956, guid: 8813dd919038a2547b21feaa9087a964,
+    type: 3}
 --- !u!1001 &338405677457345416
 PrefabInstance:
   m_ObjectHideFlags: 0

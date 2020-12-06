@@ -5,8 +5,19 @@ using UnityEngine;
 public class SettingUI : MonoBehaviour
 {
     public GameObject setting;
-    public void Setting()
+    public void ClickToOpenSetting()
     {
         setting.SetActive(true);
+    }
+    public void ClickToCloseSetting()
+    {
+        setting.SetActive(false);
+    }
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            setting.SetActive(!setting.activeSelf);
+        }
     }
 }
