@@ -1,19 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class gameManager : MonoBehaviour
 {
     [SerializeField]
     private Grid grid;
 
-    [SerializeField]
     [Tooltip("拼图板")]
     public GameObject JigsawBoard;
 
-    [SerializeField]
     [Tooltip("放置板")]
     public GameObject pickupBoard;
+
+    [SerializeField]
+    [Tooltip("结束界面")]
+    private GameObject endPanel;
+
+    [SerializeField]
+    [Tooltip("分数txt")]
+    private Text gradeText;
 
     // 方格大小
     float size;
@@ -31,6 +39,8 @@ public class gameManager : MonoBehaviour
     MoveInf move;
 
     MouseInf mouse;
+
+    GradeLevel curLevel;
 
     bool isMouseLeftDown = false;
     public static gameManager instance;
@@ -53,6 +63,8 @@ public class gameManager : MonoBehaviour
         blockBoardMask = 1 << LayerMask.NameToLayer("block");
 
         mouse = MouseInf.GetInstance();
+
+        endPanel.SetActive(false);
     }
 
     // Update is called once per frame
@@ -220,5 +232,59 @@ public class gameManager : MonoBehaviour
         y = sgnY * size / 2 * (Mathf.Ceil(y / size) * 2 - 1);
 
         return new Vector3(x, y);
+    }
+
+    public void OnClickEndButton()
+    {
+        endPanel.SetActive(true); 
+        int blockNum, blockAtJigsawBoardCount = 0;
+        blockController[] controllers = pickupBoard.GetComponentsInChildren<blockController>();
+        blockNum = controllers.Length;
+        foreach (var controller in controllers)
+        {
+            if (controller.isAtJigsawBoard)
+            {
+                blockAtJigsawBoardCount++;
+            }
+        }
+        if (blockAtJigsawBoardCount == blockNum)
+        {
+            curLevel = GradeLevel.greate;
+        }
+        else if (blockAtJigsawBoardCount >= blockNum*2/3)
+        {
+            curLevel = GradeLevel.good;
+        }
+        else
+        {
+            curLevel = GradeLevel.bad;
+        }
+        gradeText.text = GetGradeLevelString(curLevel);
+    } 
+
+    public void OnClickConfirmButton()
+    {
+        // 存档
+
+        // 读取下一关
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+    public string GetGradeLevelString(GradeLevel gradeLevel)
+    {
+        switch(gradeLevel)
+        {
+            case GradeLevel.bad:
+                return "不太好！";
+            case GradeLevel.good:
+                return "还不错！";
+            case GradeLevel.greate:
+                return "好极了！";
+        }
+        return "Invalid Grade Level!";
+    }
+
+    public void OnClickCancelButton()
+    {
+        endPanel.SetActive(false);
     }
 }
