@@ -45,5 +45,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPickedup: 0
   isAtJigsawBoard: 0
+  isChanged: 0
   initBlockPos: {x: 0, y: 0, z: 0}
   type: 0
+  changeBlock: {fileID: 8780396331696691346, guid: 90268d168b28b1048ab4e505893c98a6,
+    type: 3}

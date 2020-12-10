@@ -15,6 +15,10 @@ public class MouseInf
 
     public static MouseInf GetInstance()
     {
+        if(instance==null)
+        {
+            instance = new MouseInf();
+        }
         return instance;
     }
 
