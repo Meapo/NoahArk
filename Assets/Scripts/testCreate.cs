@@ -44,7 +44,7 @@ public class testCreate : MonoBehaviour
         }
         else
         {
-
+            Debug.LogError("Need grid");
         }
     }
 

@@ -23,9 +23,6 @@ public class gameManager : MonoBehaviour
     [Tooltip("分数txt")]
     private Text gradeText;
 
-    [SerializeField]
-    [Tooltip("结束评分界面")]
-    private GameObject endUI;
     // 方格大小
     float size;
     // main camera
@@ -240,14 +237,6 @@ public class gameManager : MonoBehaviour
     public void OnClickEndButton()
     {
         endPanel.SetActive(true); 
-        
-    } 
-
-    public void OnClickConfirmButton()
-    {
-        // 存档
-
-        // 读取下一关
         int blockNum, blockAtJigsawBoardCount = 0;
         blockController[] controllers = pickupBoard.GetComponentsInChildren<blockController>();
         blockNum = controllers.Length;
@@ -262,7 +251,7 @@ public class gameManager : MonoBehaviour
         {
             curLevel = GradeLevel.greate;
         }
-        else if (blockAtJigsawBoardCount >= blockNum * 2 / 3)
+        else if (blockAtJigsawBoardCount >= blockNum*2/3)
         {
             curLevel = GradeLevel.good;
         }
@@ -271,9 +260,14 @@ public class gameManager : MonoBehaviour
             curLevel = GradeLevel.bad;
         }
         gradeText.text = GetGradeLevelString(curLevel);
-        endUI.SetActive(true);
-        endPanel.SetActive(false);
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    } 
+
+    public void OnClickConfirmButton()
+    {
+        // 存档
+
+        // 读取下一关
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
     public string GetGradeLevelString(GradeLevel gradeLevel)
     {
