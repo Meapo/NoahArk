@@ -13,11 +13,15 @@ public class SettingUI : MonoBehaviour
     {
         setting.SetActive(false);
     }
-    private void Update()
+    public void ClickToChangeSetting()
+    {
+        setting.SetActive(!setting.activeSelf);
+    }
+    /*private void Update()
     {
         if(Input.GetKeyDown(KeyCode.Escape))
         {
             setting.SetActive(!setting.activeSelf);
         }
-    }
+    }*/
 }

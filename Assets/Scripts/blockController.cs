@@ -138,7 +138,6 @@ public class blockController : MonoBehaviour
         newObject.name = changeBlock.name+order;
         gameManagerInstance.AddPointToList(gameObject, gameManagerInstance.JigsawBoard);
         Destroy(this.gameObject);
-        Debug.Log("cahnge");
         SaveMove(true,newObject.name);
     }
 
