@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class gameManager : MonoBehaviour
 {
@@ -35,7 +36,7 @@ public class gameManager : MonoBehaviour
     // 射线检测最远距离，不加距离的话layer过滤容易失效（巨坑）
     float maxRayDistance = 100f;
     // layer mask
-    LayerMask jigsawBoardMask, pickupBoardMask, blockBoardMask;
+    LayerMask jigsawBoardMask, pickupBoardMask, blockBoardMask, UILayerMask;
 
     Operation operation;
 
@@ -64,7 +65,7 @@ public class gameManager : MonoBehaviour
         jigsawBoardMask = 1 << LayerMask.NameToLayer("jigsawBoard");
         pickupBoardMask = 1 << LayerMask.NameToLayer("pickupBoard");
         blockBoardMask = 1 << LayerMask.NameToLayer("block");
-
+        UILayerMask = 1 << LayerMask.NameToLayer("UI");
         mouse = MouseInf.GetInstance();
 
         endPanel.SetActive(false);
@@ -75,6 +76,10 @@ public class gameManager : MonoBehaviour
 
     private void Update()
     {
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            return;
+        }
         if (Input.GetMouseButtonDown(0))
         {
             isMouseLeftDown = true;
@@ -89,7 +94,7 @@ public class gameManager : MonoBehaviour
             if (pickupItem==null)
             {
                 // 提取拼图
-                Physics.Raycast(ray, out hit, maxRayDistance, blockBoardMask);
+                Physics.Raycast(ray, out hit, maxRayDistance, blockBoardMask | UILayerMask);
                 if (hit.collider != null)
                 {
                     GameObject hitObject = hit.collider.gameObject.GetComponentInParent<blockController>().gameObject;
@@ -120,7 +125,7 @@ public class gameManager : MonoBehaviour
             else
             {
                 // 放置拼图
-                Physics.Raycast(ray, out hit, maxRayDistance, jigsawBoardMask | pickupBoardMask);
+                Physics.Raycast(ray, out hit, maxRayDistance, jigsawBoardMask | pickupBoardMask | UILayerMask);
                 if (hit.collider != null)
                 {
                     GameObject hitObject = hit.collider.gameObject;

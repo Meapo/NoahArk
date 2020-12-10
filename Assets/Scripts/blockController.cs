@@ -17,6 +17,8 @@ public class blockController : MonoBehaviour
 
     LayerMask blockLayerMask;
 
+    LayerMask UILayerMask;
+
     public GameObject changeBlock;
 
     gameManager gameManagerInstance;
@@ -101,7 +103,6 @@ public class blockController : MonoBehaviour
         {
             RaycastHit hit;
             Physics.Raycast(point, vectors[i], out hit, gameObject.GetComponentInChildren<BoxCollider>().size.x, blockLayerMask);
-            Debug.DrawRay(point, vectors[i], Color.red, gameObject.GetComponentInChildren<BoxCollider>().size.x);
             if (hit.collider!=null)
             {
                 blockType hitBlockType = hit.collider.gameObject.GetComponentInParent<blockController>().type;

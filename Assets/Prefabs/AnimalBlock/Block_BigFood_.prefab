@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6068356674805390599}
   - component: {fileID: 2371957605132025377}
   m_Layer: 9
-  m_Name: Block_Food_
+  m_Name: Block_BigFood_
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,5 +45,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPickedup: 0
   isAtJigsawBoard: 0
+  isChanged: 0
   initBlockPos: {x: 0, y: 0, z: 0}
   type: 0
+  changeBlock: {fileID: 8780396331696691346, guid: e40d91cf189ac114295fd1a2fb7119ab,
+    type: 3}

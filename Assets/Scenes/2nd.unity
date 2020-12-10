@@ -369,8 +369,8 @@ MonoBehaviour:
   JigsawBoard: {fileID: 1070240281}
   pickupBoard: {fileID: 1537546337}
   endPanel: {fileID: 935841697}
-  gradeText: {fileID: 0}
-  endUI: {fileID: 0}
+  gradeText: {fileID: 375736280}
+  endUI: {fileID: 983791419}
 --- !u!4 &320036436
 Transform:
   m_ObjectHideFlags: 0
@@ -385,6 +385,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &375736280 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9208862677540071566, guid: 16df71d1ab759124585e33ad8af282ef,
+    type: 3}
+  m_PrefabInstance: {fileID: 547873747}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &377874167
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -466,6 +478,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1537546340}
     m_Modifications:
+    - target: {fileID: 1384824981802887718, guid: e40d91cf189ac114295fd1a2fb7119ab,
+        type: 3}
+      propertyPath: changeBlock
+      value: 
+      objectReference: {fileID: 5334298070759771285, guid: cf7d0d4dccdfb8c42a6e1352d25965c3,
+        type: 3}
     - target: {fileID: 7487834828549245184, guid: e40d91cf189ac114295fd1a2fb7119ab,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -979,6 +997,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1214527465422285289, guid: b8fd0e2ca38a90f40a35727660b78e8c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1214527465675408098, guid: b8fd0e2ca38a90f40a35727660b78e8c,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -1121,6 +1144,12 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1214527465422285289, guid: b8fd0e2ca38a90f40a35727660b78e8c,
     type: 3}
   m_PrefabInstance: {fileID: 935841695}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &983791419 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7919080860733994856, guid: 16df71d1ab759124585e33ad8af282ef,
+    type: 3}
+  m_PrefabInstance: {fileID: 547873747}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1049324078 stripped
 Transform:
