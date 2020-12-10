@@ -50,7 +50,7 @@ public class Undo : MonoBehaviour
             GameObject.Destroy(preBlock);
             block.GetComponent<blockController>().isChanged = false;
             string partten = @"\s.*";
-            MatchCollection match = Regex.Matches(name, partten);
+            MatchCollection match = Regex.Matches(preBlock.name, partten);
             string order = null;
             if (match.Count > 0)
             {
