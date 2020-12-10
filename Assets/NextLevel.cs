@@ -12,9 +12,13 @@ public class NextLevel : MonoBehaviour
     {
         button = GetComponent<Button>();
         nowLevel = SceneManager.GetActiveScene().buildIndex;
-        if (nowLevel+1>SceneManager.sceneCount)
+        if (nowLevel+1>SceneManager.sceneCountInBuildSettings)
         {
             button.interactable = false;
+        }
+        else
+        {
+            button.interactable = true;
         }
     }
     public void ClickToLoadNextLevel()

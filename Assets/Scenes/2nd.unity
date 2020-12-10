@@ -572,7 +572,8 @@ MonoBehaviour:
   JigsawBoard: {fileID: 1070240281}
   pickupBoard: {fileID: 1537546337}
   endPanel: {fileID: 935841697}
-  gradeText: {fileID: 935841696}
+  gradeText: {fileID: 547873749}
+  endUI: {fileID: 547873748}
 --- !u!4 &320036436
 Transform:
   m_ObjectHideFlags: 0
@@ -1150,7 +1151,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f561dd5ef5fad941956608d2dd949b5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!224 &547873750 stripped
@@ -1614,18 +1615,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b8fd0e2ca38a90f40a35727660b78e8c, type: 3}
---- !u!114 &935841696 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1214527465740707840, guid: b8fd0e2ca38a90f40a35727660b78e8c,
-    type: 3}
-  m_PrefabInstance: {fileID: 935841695}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &935841697 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1214527465422285289, guid: b8fd0e2ca38a90f40a35727660b78e8c,
