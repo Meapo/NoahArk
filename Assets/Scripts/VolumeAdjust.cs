@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class VolumeAdjust : MonoBehaviour
 {
     // Start is called before the first frame update
+    
     VolumeManager volumeManager;
     public Slider BGVolumeSlider;
     public Slider EFVolumeSlider;

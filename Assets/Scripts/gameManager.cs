@@ -137,8 +137,8 @@ public class gameManager : MonoBehaviour
                         {
                             DeletePointFromList(pickupItem, hitObject);
                             pickupItem.GetComponent<blockController>().isAtJigsawBoard = true;
-                            mouse.isRelay = true;
                         }
+                        mouse.isRelay = true;
                         move.endBoard = hitObject;
                         operation.AddMoveInf(move);
                         pickupItem = null;
@@ -244,8 +244,9 @@ public class gameManager : MonoBehaviour
 
     public void OnClickEndButton()
     {
-        endPanel.SetActive(true); 
-        
+        endPanel.SetActive(true);
+        OpeningUI openingUI = OpeningUI.GetInstance();
+        openingUI.UICanCloseByESC = endPanel;
     } 
 
     public void OnClickConfirmButton()
@@ -297,5 +298,7 @@ public class gameManager : MonoBehaviour
     public void OnClickCancelButton()
     {
         endPanel.SetActive(false);
+        OpeningUI openingUI = OpeningUI.GetInstance();
+        openingUI.UICanCloseByESC = null;
     }
 }

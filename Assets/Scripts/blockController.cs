@@ -86,10 +86,6 @@ public class blockController : MonoBehaviour
         }
     
     }
-    private void LateUpdate()
-    {
-        mouse.isRelay = false;
-    }
     void Rotate()
     {
         transform.Rotate(new Vector3(0f, 0f, -90f), Space.Self);
@@ -145,7 +141,9 @@ public class blockController : MonoBehaviour
     void Withdraw()
     {
         gameManagerInstance.AddPointToList(gameObject, gameManagerInstance.JigsawBoard);
+        Debug.Log("BACL");
         transform.position = initBlockPos;
+        isAtJigsawBoard = false;
     }
 
     /// <summary>

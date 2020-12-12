@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Text.RegularExpressions;
-
+/// <summary>
+/// 单例，挂载在撤回按钮上，用于控制撤回操作
+/// 要求物体的命名 为    "名字 (序号)"
+/// </summary>
 public class Undo : MonoBehaviour
 { 
     public static Undo instance;

@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+/// <summary>
+/// 挂载在下一关的按钮上，加载下一关，如果
+/// 下一关不存在，在该按钮失效。
+/// </summary>
 public class NextLevel : MonoBehaviour
 {
     Button button;
@@ -12,7 +16,7 @@ public class NextLevel : MonoBehaviour
     {
         button = GetComponent<Button>();
         nowLevel = SceneManager.GetActiveScene().buildIndex;
-        if (nowLevel+1>SceneManager.sceneCountInBuildSettings)
+        if (nowLevel+1==SceneManager.sceneCountInBuildSettings)
         {
             button.interactable = false;
         }
@@ -20,6 +24,8 @@ public class NextLevel : MonoBehaviour
         {
             button.interactable = true;
         }
+        Debug.Log(nowLevel);
+        Debug.Log(SceneManager.sceneCountInBuildSettings);
     }
     public void ClickToLoadNextLevel()
     {

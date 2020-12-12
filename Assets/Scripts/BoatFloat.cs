@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// 用来控制船的浮动动画
+/// </summary>
 public class BoatFloat : MonoBehaviour
 {
     public float moveSpeed;
+    //分别朝四个方向随机移动
     int[, ] dir = new int[,] { { 1, 1 }, { 1, -1 }, { -1, -1 }, { -1, 1 } };
     int cnt = 0;
     public int movCnt;
