@@ -18,6 +18,14 @@ public class HelpManager : MonoBehaviour
     public GameObject textImg;
     public GameObject panel;
     private bool isStartShowEnd;
+
+    [SerializeField]
+    [Tooltip("关卡开始播放界面")]
+    private GameObject startPanel;
+
+    [SerializeField]
+    [Tooltip("关卡开始播放时间")]
+    private float playTime = 2f;
     // Start is called before the first frame update
     void Start()
     {
@@ -151,7 +159,8 @@ public class HelpManager : MonoBehaviour
         panel.SetActive(true);
         textImg.SetActive(false);
         panel.GetComponent<Image>().color = Color.black;
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(playTime);
+        startPanel.SetActive(false);
         textImg.SetActive(true);
         ShowLines(str);
         isStartShowEnd = true;

@@ -24,8 +24,6 @@ public class NextLevel : MonoBehaviour
         {
             button.interactable = true;
         }
-        Debug.Log(nowLevel);
-        Debug.Log(SceneManager.sceneCountInBuildSettings);
     }
     public void ClickToLoadNextLevel()
     {

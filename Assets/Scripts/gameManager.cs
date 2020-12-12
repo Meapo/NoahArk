@@ -27,6 +27,12 @@ public class gameManager : MonoBehaviour
     [SerializeField]
     [Tooltip("结束评分界面")]
     private GameObject endUI;
+
+    [SerializeField]
+    [Tooltip("评分图")]
+    private Image levelImage;
+
+   
     // 方格大小
     float size;
     // main camera
@@ -264,6 +270,7 @@ public class gameManager : MonoBehaviour
                 blockAtJigsawBoardCount++;
             }
         }
+        string path = "UI/level";
         if (blockAtJigsawBoardCount == blockNum)
         {
             curLevel = GradeLevel.greate;
@@ -276,6 +283,8 @@ public class gameManager : MonoBehaviour
         {
             curLevel = GradeLevel.bad;
         }
+        path += curLevel;
+        levelImage.sprite = Resources.Load<Sprite>(path);
         gradeText.text = GetGradeLevelString(curLevel);
         endUI.SetActive(true);
         endPanel.SetActive(false);
