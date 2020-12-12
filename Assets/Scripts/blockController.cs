@@ -75,7 +75,7 @@ public class blockController : MonoBehaviour
                         }
                         else
                         {
-                            SaveMove(false,name);
+                            SaveMove(false,name,gameManagerInstance.JigsawBoard,gameManagerInstance.pickupBoard);
                             Withdraw();
                             break;
                         }
@@ -135,7 +135,8 @@ public class blockController : MonoBehaviour
         newObject.name = changeBlock.name+order;
         gameManagerInstance.AddPointToList(gameObject, gameManagerInstance.JigsawBoard);
         Destroy(this.gameObject);
-        SaveMove(true,newObject.name);
+
+        SaveMove(true,newObject.name,gameManagerInstance.JigsawBoard,gameManagerInstance.pickupBoard);
     }
 
     void Withdraw()
@@ -148,13 +149,13 @@ public class blockController : MonoBehaviour
     /// <summary>
     /// 将方块撤回的移动信息存入operation中
     /// </summary>
-    void SaveMove(bool isChanged,string name)
+    void SaveMove(bool isChanged,string name,GameObject sourBoard,GameObject endBoard)
     {
         Operation operation = Operation.GetInstance();
         MoveInf move = new MoveInf();
         move.blockName = name;
-        move.endBoard = gameManagerInstance.pickupBoard;
-        move.sourBoard = gameManagerInstance.JigsawBoard;
+        move.endBoard = endBoard;
+        move.sourBoard = sourBoard;
         move.sourPos = transform.position;
         move.sourRoa = transform.eulerAngles;
         move.isChanged = isChanged;

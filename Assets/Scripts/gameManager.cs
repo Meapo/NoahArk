@@ -119,7 +119,7 @@ public class gameManager : MonoBehaviour
                     }
                     else 
                     {
-                        move.sourBoard = JigsawBoard;
+                        move.sourBoard = pickupBoard;
                     }
                 }
             }

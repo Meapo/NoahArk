@@ -40,6 +40,7 @@ public class Undo : MonoBehaviour
                 UndoMove(move);
             }
         }
+        MouseInf.GetInstance().isRelay = true;
     }
     void UndoMove(MoveInf move)
     {
@@ -71,12 +72,21 @@ public class Undo : MonoBehaviour
             manager.AddPointToList(block, manager.JigsawBoard);
             controller.isAtJigsawBoard = false;
         }
+        else
+        {
+            controller.isAtJigsawBoard = true;
+        }
         block.transform.position = move.sourPos;
         block.transform.eulerAngles = move.sourRoa;
-        if(move.sourBoard==manager.JigsawBoard)
+        if (move.sourBoard == manager.JigsawBoard)
         {
             manager.DeletePointFromList(block, manager.JigsawBoard);
             controller.isAtJigsawBoard = true;
+        }
+        else
+        {
+            Debug.Log("hi");
+            controller.isAtJigsawBoard = false;
         }
     }
 }
