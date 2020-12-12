@@ -1616,7 +1616,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   endPosX: 505
-  movSpeed: 20
+  movSpeed: -20
 --- !u!114 &1574101394 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2912809737287655463, guid: 9f2e3b8c9003f8342a7c94194150dd29,
@@ -2039,7 +2039,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -186, y: 92}
+  m_AnchoredPosition: {x: -186, y: 54}
   m_SizeDelta: {x: 450, y: 450}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2133259711
