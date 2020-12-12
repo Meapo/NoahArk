@@ -25,6 +25,7 @@ public class blockController : MonoBehaviour
 
     MouseInf mouse;
 
+    float smooth = 10f;
 
     private void Awake()
     {
@@ -45,7 +46,8 @@ public class blockController : MonoBehaviour
         if (isPickedup)
         {
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            transform.position = new Vector3(mousePos.x, mousePos.y, 0f);
+            mousePos.z = 0f;
+            transform.position = Vector3.Lerp(transform.position, mousePos, smooth * Time.deltaTime);
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 Rotate();
