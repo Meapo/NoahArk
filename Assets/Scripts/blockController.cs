@@ -141,7 +141,6 @@ public class blockController : MonoBehaviour
     void Withdraw()
     {
         gameManagerInstance.AddPointToList(gameObject, gameManagerInstance.JigsawBoard);
-        Debug.Log("BACL");
         transform.position = initBlockPos;
         isAtJigsawBoard = false;
     }
