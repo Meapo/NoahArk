@@ -460,7 +460,7 @@ PrefabInstance:
     - target: {fileID: 3436992764035914810, guid: 16df71d1ab759124585e33ad8af282ef,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnClickEndButton
+      value: OnClickConfirmButton
       objectReference: {fileID: 0}
     - target: {fileID: 3436992764035914810, guid: 16df71d1ab759124585e33ad8af282ef,
         type: 3}

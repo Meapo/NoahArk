@@ -17,10 +17,6 @@ public class gameManager : MonoBehaviour
     public GameObject pickupBoard;
 
     [SerializeField]
-    [Tooltip("结束界面")]
-    private GameObject endPanel;
-
-    [SerializeField]
     [Tooltip("分数txt")]
     private Text gradeText;
 
@@ -74,7 +70,6 @@ public class gameManager : MonoBehaviour
         UILayerMask = 1 << LayerMask.NameToLayer("UI");
         mouse = MouseInf.GetInstance();
 
-        endPanel.SetActive(false);
     }
 
     // Update is called once per frame
@@ -248,12 +243,6 @@ public class gameManager : MonoBehaviour
         return new Vector3(x, y);
     }
 
-    public void OnClickEndButton()
-    {
-        endPanel.SetActive(true);
-        OpeningUI openingUI = OpeningUI.GetInstance();
-        openingUI.UICanCloseByESC = endPanel;
-    } 
 
     public void OnClickConfirmButton()
     {
@@ -287,7 +276,6 @@ public class gameManager : MonoBehaviour
         levelImage.sprite = Resources.Load<Sprite>(path);
         gradeText.text = GetGradeLevelString(curLevel);
         endUI.SetActive(true);
-        endPanel.SetActive(false);
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
     public string GetGradeLevelString(GradeLevel gradeLevel)
@@ -304,10 +292,5 @@ public class gameManager : MonoBehaviour
         return "Invalid Grade Level!";
     }
 
-    public void OnClickCancelButton()
-    {
-        endPanel.SetActive(false);
-        OpeningUI openingUI = OpeningUI.GetInstance();
-        openingUI.UICanCloseByESC = null;
-    }
+   
 }

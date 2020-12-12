@@ -208,7 +208,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dir: 1
-  speed: 3
+  speed: 1.5
   endPosX: 18
 --- !u!1 &6060227806341831462
 GameObject:
@@ -371,7 +371,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dir: -1
-  speed: 2
+  speed: 1
   endPosX: -22
 --- !u!1 &6060227807004143608
 GameObject:
