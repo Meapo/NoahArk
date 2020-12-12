@@ -85,7 +85,6 @@ public class Undo : MonoBehaviour
         }
         else
         {
-            Debug.Log("hi");
             controller.isAtJigsawBoard = false;
         }
     }
